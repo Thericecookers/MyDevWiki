@@ -129,3 +129,15 @@ func (k kelvin) celsius() celsius{
 * 方法只能有唯一的接收者
 ![avatar](./picture/go/method_for_type.jpg)
 
+## 数组
+* 没有被赋值的元素为对应类型的零值
+* 复合字面值初始化
+```go
+dwarfs := [2]string{"Cad","der"}
+dwarfs := [...]string{"Cad","der"}//自动推断长度
+```
+* 数组赋值给新的变量是deep copy
+* 数组长度也是数组类型的一部分，因此函数一般用**切片**而不使用**数组**作为参数
+
+## 切片
+* （反常规）切分字符串时，索引代表的是字节数而不是rune数（因此在存在非英文时需要注意）
