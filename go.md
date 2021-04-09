@@ -141,3 +141,34 @@ dwarfs := [...]string{"Cad","der"}//自动推断长度
 
 ## 切片
 * （反常规）切分字符串时，索引代表的是字节数而不是rune数（因此在存在非英文时需要注意）
+* 切片可以由两种方式声明
+```go
+dwarfSlice:=dwarfArray[:]//由已知数组切片
+dwarfSlice:=[]string{"dsaf","fdf"}//新建数组同时切片所有元素
+```
+* []是切片，[...]或者[num]是数组
+* 在切片上进行append操作很有可能会改变底层数组（有一些例外情况，例如切片的容量已经满了）因此可以限制切片容量slice[0:3:3]
+* make函数可以预分配容量给slice，提升效率
+```go
+dwarfs:=make([]string,0,10)//string切片，长度0，容量10
+dwarfs:=make([]string,10)//string切片，长度10，容量10
+```
+* 针对可变长度参数，切片需要展开
+```go
+func terraform(prefix string,words ...string)//words其实就是string切片
+planets:=[]string{"sdf","dff"}
+terraform("New",planets...)//三个点代表展开切片
+```
+* 传可变参数是浅拷贝过程
+
+## map
+*判断键是否存在
+```go
+if moon,ok:=dict["Moon"];ok{
+    fmt.Printf("key exist")
+}else{
+    fmt.Printf(key does not exist)
+}
+```
+* map在赋值的时候是浅拷贝（与数组，整型等不同）
+* map可以用复合字面值与make函数初始化
