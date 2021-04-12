@@ -172,3 +172,20 @@ if moon,ok:=dict["Moon"];ok{
 ```
 * map在赋值的时候是浅拷贝（与数组，整型等不同）
 * map可以用复合字面值与make函数初始化
+
+# 方法转发
+* struct可以嵌入，省略字段名
+```go
+type report struct{
+    sol int//组合
+    temperature//嵌入
+    location//嵌入
+}
+```
+* 嵌入字段类型会自动生成与类型名一样的字段
+* 嵌入后可以直接使用temperature,location的方法
+* 嵌入有可能造成重复命名问题，需要明确调用哪个嵌入字段的方法
+
+# 继承还是组合
+* 优先使用组合而不是对象
+* 传统继承均可用组合实现
